@@ -1,0 +1,17 @@
+<head>
+  <title>latency</title>
+</head>
+
+<body>
+  <h1>Todos</h1>
+
+  {{> hello}}
+</body>
+
+<template name="hello">
+  <ul>
+  {{#each todos}}
+  	<li> {{ title }} {{#if isSimulation }} sending ... {{/if}}</li>
+  {{/each}}
+  </ul>
+</template>
