@@ -4,14 +4,14 @@
 var Future = Npm.require('fibers/future');
 var Fiber = Npm.require('fibers');
 var _autopublishFields = {
-  loggedInUser: ['profile', 'username', 'emails'],
-  otherUsers: ['profile', 'username']
+    loggedInUser: ['profile', 'username', 'emails'],
+    otherUsers: ['profile', 'username']
 };
 // ['profile', 'username'] -> {profile: 1, username: 1}
 var toFieldSelector = function (fields) {
-  return _.object(_.map(fields, function (field) {
-    return [field, 1];
-  }));
+    return _.object(_.map(fields, function (field) {
+        return [field, 1];
+    }));
 };
 
 /**
@@ -27,8 +27,16 @@ Meteor.publish("delay", function(){
 });
 
 Meteor.publish("users", function(){
-  if(this.userId){
-      return Meteor.users.find({}, {fields: toFieldSelector(_autopublishFields.otherUsers)});
-  }
-  return [];
+    if(this.userId){
+        return Meteor.users.find({}, {fields: toFieldSelector(_autopublishFields.otherUsers)});
+    }
+    return [];
 });
+
+// Meteor.startup(function () {
+//     Meteor.users.remove({});
+//     Meteor.users.find({}).forEach(function (user) {
+//         console.log(user, 'user');
+//     });
+// });
+

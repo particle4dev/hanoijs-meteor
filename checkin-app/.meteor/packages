@@ -10,3 +10,5 @@ react
 accounts-facebook
 service-configuration
 accounts-ui
+http
+momentjs:moment
