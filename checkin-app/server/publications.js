@@ -33,10 +33,9 @@ Meteor.publish("users", function(){
     return [];
 });
 
-// Meteor.startup(function () {
-//     Meteor.users.remove({});
-//     Meteor.users.find({}).forEach(function (user) {
-//         console.log(user, 'user');
-//     });
-// });
-
+Meteor.startup(function () {
+    // Meteor.users.remove({});
+    // Meteor.users.find({}).forEach(function (user) {
+    //     console.log(user, 'user');
+    // });
+});

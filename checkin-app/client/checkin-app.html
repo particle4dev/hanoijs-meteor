@@ -7,10 +7,10 @@
 </head>
 
 <body>
-    {{> hello}}    
+    {{> main}}    
 </body>
 
-<template name="hello">
+<template name="main">
 <!-- Uses a transparent header that draws on top of the layout's background -->
 <style>
 .layout-transparent {
@@ -25,15 +25,16 @@
      your background is light. */
     color: white;
 }
+.demo-card-square.mdl-card {
+    width: 320px;
+    height: 320px;
+}
+.demo-card-square > .mdl-card__title {
+    color: #fff;
+    background: #46B6AC;
+}
 </style>
 <div class="layout-transparent mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-        for="demo-menu-lower-right">
-        <li class="mdl-menu__item">Some Action</li>
-        <li class="mdl-menu__item">Another Action</li>
-        <li disabled class="mdl-menu__item">Disabled Action</li>
-        <li class="mdl-menu__item">Yet Another Action</li>
-    </ul>
     <header class="mdl-layout__header mdl-layout__header--transparent mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row">
             <!-- Title -->
@@ -52,78 +53,64 @@
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation -->
             <nav class="waterfall-demo-header-nav mdl-navigation">
+                <a class="mdl-navigation__link" href="#total">({{ total }})</a>
+                <!--
                 <a class="mdl-navigation__link" href="">Link</a>
                 <a class="mdl-navigation__link" href="">Link</a>
                 <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
+                -->
             </nav>
         </div>
     </header>
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Ha Noi Javascript</span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Link 5</a>
-            <a class="mdl-navigation__link" href="">Link 6</a>
-            <a class="mdl-navigation__link" href="">Link 7</a>
-            <a class="mdl-navigation__link" href="">Link 8</a>
-        </nav>
+        {{> button}}
     </div>
     <main class="mdl-layout__content">
         <div class="page-content">
             <!-- Square card -->
-            <style>
-                .demo-card-square.mdl-card {
-                    width: 320px;
-                    height: 320px;
-                }
-                .demo-card-square > .mdl-card__title {
-                    color: #fff;
-                    background:
-                        url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
-                }
-            </style>
-            <div class="mdl-card mdl-shadow--2dp demo-card-square">
-                <div class="mdl-card__title mdl-card--expand">
-                    <h2 class="mdl-card__title-text">Le Hoang</h2>
-                </div>
-                <div class="mdl-card__supporting-text mdl-card--border">
-                    <div>Email: particle4dev@gmail.com</div>
-                    <div>Age: 25</div>
-                </div>
-            </div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-
-            <br/>
-            <br/>
-            <br/>
-
-            <br/>
-            <br/>
-
-            <br/>
-            <br/>
-
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+            {{#each users}}
+                {{> user}}
+            {{/each}}
         </div>
     </main>
+{{#if currentUser}}
+    {{> menuRight }}
+{{/if}}
 </div>
+</template>
 
+<template name="user">
+    <a class="mdl-navigation__link" href="{{ profile.link }}" target="_blank">
+    <div class="mdl-card mdl-shadow--2dp demo-card-square" style="margin-bottom: 20px;">
+        <div class="mdl-card__title mdl-card--expand" style="background: url('{{ profile.cover }}') center / cover;">
+            <h2 class="mdl-card__title-text">{{ profile.name }}</h2>
+        </div>
+        <div class="mdl-card__supporting-text mdl-card--border">
+            <div>Email: {{ profile.email }}</div>
+            <div>Age: {{ age profile.birthday }}</div>
+        </div>
+    </div>
+    </a>
+</template>
+
+<template name="button">
+    {{#if currentUser}}
+
+    {{else}}
+     <button id="loginButton" class="mdl-button mdl-button--raised mdl-button--accent mdl-js-button mdl-js-ripple-effect" style="margin: 10px;">
+        Login with <b>Facebook</b>
+    </button>
+    {{/if}}
+</template>
+
+<template name="menuRight">
+    <ul id="menuRight" class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+        for="demo-menu-lower-right">
+        {{> menuRightButton}}
+    </ul>
+</template>
+
+<template name="menuRightButton">
+    <li id="logoutButton" class="mdl-menu__item">Logout</li>
 </template>

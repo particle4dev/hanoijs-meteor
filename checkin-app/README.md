@@ -1,0 +1,1 @@
+meteor deploy hanoijs-checkin.meteor.com --settings settings.json
