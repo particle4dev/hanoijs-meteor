@@ -8,20 +8,20 @@ Meteor.methods({
 				title: t
 			};
             if(!this.isSimulation){
-              var Future = Npm.require('fibers/future');
-              var Fiber = Npm.require('fibers');
-              doc.isSimulation = false;
-              var fiber = Fiber.current;
-              setTimeout(function() {
-                  fiber.run();
-              }, 10000);
-              Fiber.yield();
-              return insertNewTodo(doc);
+                var Future = Npm.require('fibers/future');
+                var Fiber = Npm.require('fibers');
+                doc.isSimulation = false;
+                var fiber = Fiber.current;
+                setTimeout(function() {
+                    fiber.run();
+                }, 10000);
+                Fiber.yield();
+                return insertNewTodo(doc);
             }
             else {
-              // Insert into MongoDB and Minimongo
-              doc.isSimulation = true;
-              return insertNewTodo(doc);
+                // Insert into MongoDB and Minimongo
+                doc.isSimulation = true;
+                return insertNewTodo(doc);
             }
         }
         catch(err){
