@@ -7,6 +7,8 @@ if (Meteor.isClient) {
   });
   window.light = new ReactiveVar('green');
   Tracker.autorun(function(c) {
+    if(light.get() == 'black')
+      c.stop();
     console.trace('The light is', light.get());
   });
 

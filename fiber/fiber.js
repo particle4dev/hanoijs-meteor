@@ -14,7 +14,7 @@ if (Meteor.isServer) {
     //     sleep(2000);
     //     console.log("after");
     // }).run();
-
+    // console.log('hello');
     // PROMISES
     // var p = new Promise(function(resolve, reject) {
     //     setTimeout(function () {
@@ -27,15 +27,15 @@ if (Meteor.isServer) {
     // });
 
     // METEOR
-    // let MusicCollection = new Mongo.Collection('music');
-    // if(MusicCollection.find().count() === 0) {
-    //     MusicCollection.insert({
-    //         songTitle: 'Take Your Time',
-    //         singer: 'Sam Hunt'
-    //     });
-    // }
-    // let cursor = MusicCollection.find();
-    // cursor.forEach(function (song) {
-    //     console.log(song);
-    // });
+    let MusicCollection = new Mongo.Collection('music');
+    if(MusicCollection.find().count() === 0) {
+        MusicCollection.insert({
+            songTitle: 'Take Your Time',
+            singer: 'Sam Hunt'
+        });
+    }
+    let cursor = MusicCollection.find();
+    cursor.forEach(function (song) {
+        console.log(song);
+    });
 }
